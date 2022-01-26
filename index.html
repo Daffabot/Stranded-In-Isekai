@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stranded In Isekai</title>
+	<script src='map-min.js'></script>
+	<script src='dialog.js'></script>
+	<script src='soal_db-min.js'></script>
+	<script src='jsRPG-min.js'></script>
+	<script src='flashRPG.js'></script>
+	
+</head>
+<body>
+	<div align="center" style="overflow:hidden;">
+		<canvas id="scene" width="960" height="640"></canvas>
+	</div>
+</body>
+<script>
+	var canvas = document.getElementById("scene");
+	var konten = canvas.getContext("2d");
+	hapusLayar("#333");
+	
+	var fileGambar = {
+		charImg: "images/char_sprites.png",
+		tileSet: "images/tileset.png",
+		bayangan: "images/char_shadow.png",
+		npc1: "images/npc_sprites_1.png",
+		npc2: "images/npc_sprites_2.png",
+		npc3: "images/npc_sprites_3.png",
+		npc4: "images/npc_sprites_4.png",
+		npc5: "images/npc_sprites_5.png",
+		npc6: "images/npc_sprites_6.png",
+		npc7: "images/npc_sprites_7.png",
+		enemy0: "images/enemy_sprites_1.png",
+		enemy1: "images/enemy_sprites_2.png",
+		enemy2: "images/enemy_sprites_3.png",
+		enemy3: "images/enemy_sprites_4.png",
+		enemy4: "images/enemy_sprites_5.png",
+		enemy5: "images/enemy_sprites_6.png",
+		avatar: "images/face_set.png",
+		GUI: "images/UI_set.png",
+		itemIcon: "images/item_set.png",
+		bgBattle: "images/bg_forest.png",
+		cover: "images/cover_bg.jpg"
+	};
+	var fileSuara = {
+		bgm1:"sound/village-snd.mp3",
+		bgm2:"sound/forrest-snd.mp3",
+		bgm3:"sound/battle-snd.mp3",
+		bgm4:"sound/gameover-snd.mp3",
+		attack:"sound/sword-snd.mp3",
+		gold:"sound/gold-snd.mp3",
+		correct:"sound/correct-snd.mp3",
+		wrong:"sound/wrong-snd.mp3",
+		victory:"sound/victory-snd.mp3"
+	}
+	
+	preload(fileGambar, fileSuara, setup);
+	
+	function setup(){
+		aktifkanKeyboard();		
+		textWarning("Tekan <SPASI> untuk memulai",canvas.width/2, canvas.height-100, "bold 15pt Calibri", "#fff700");
+		halamanJudul(dataGambar.cover, startGame);					
+	}
+	function startGame(){
+	karakter = {img:dataGambar.charImg, shad:dataGambar.bayangan}
+	setMap(1, 16, 8);
+	setNPC(7);
+	jalankanGame();
+	}
+</script>
+</html>
